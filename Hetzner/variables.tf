@@ -78,11 +78,11 @@ variable "enable_public_ssh" {
 variable "ssh_allowed_cidrs" {
   description = "CIDRs allowed to SSH into the bastion"
   type        = list(string)
-  default     = ["62.65.58.64/32"]
+  default     = ["0.0.0.0/0"]
 }
 
 variable "bastion_server_type" {
   description = "Hetzner server type for bastion"
   type        = string
-  default     = "ccx13"
+  default     = "cx23"
 }
