@@ -1,7 +1,7 @@
 locals {
   subnet_cidr           = "10.0.0.0/24"
   internal_cidr         = "10.0.0.0/16"
-  bastion_private_ip    = cidrhost(local.subnet_cidr, 5)
+  bastion_private_ip    = cidrhost(local.subnet_cidr, 6)
   first_node_private_ip = cidrhost(local.subnet_cidr, 10)
   kubectl_version       = "v1.30.0"
 }

@@ -25,7 +25,7 @@ variable "server_count" {
 variable "server_type" {
   description = "Hetzner server type for k3s nodes"
   type        = string
-  default     = "cpx31"
+  default     = "ccx13"
 }
 
 variable "image" {
@@ -84,5 +84,5 @@ variable "ssh_allowed_cidrs" {
 variable "bastion_server_type" {
   description = "Hetzner server type for bastion"
   type        = string
-  default     = "ccx1"
+  default     = "ccx13"
 }
