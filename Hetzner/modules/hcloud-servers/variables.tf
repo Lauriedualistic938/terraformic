@@ -6,7 +6,7 @@ variable "role" {
   type = string
 }
 
-variable "count" {
+variable "node_count" {
   type = number
 }
 

@@ -66,7 +66,7 @@ resource "hcloud_firewall" "this" {
 }
 
 resource "hcloud_server" "this" {
-  count       = var.count
+  count       = var.node_count
   name        = format("%s-%s-%02d", var.name, var.role, count.index + 1)
   image       = var.image
   server_type = var.server_type

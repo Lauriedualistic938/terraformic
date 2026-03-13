@@ -62,7 +62,7 @@ module "servers" {
   source            = "./modules/hcloud-servers"
   name              = var.project_name
   role              = "server"
-  count             = var.server_count
+  node_count        = var.server_count
   image             = var.image
   server_type       = var.server_type
   location          = var.location
