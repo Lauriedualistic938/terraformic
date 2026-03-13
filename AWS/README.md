@@ -7,6 +7,9 @@ Terraform setup for an EKS cluster in `eu-central-1` with 3 worker nodes, one pe
 - AWS credentials configured in your environment
 - SSH keypair (optional, only used if `enable_public_ssh = true`)
 
+## Backend state
+Edit `AWS/backend.tf` and replace `REPLACE_ME_*` values before running `terraform init`.
+
 ## Usage
 1. Create a `terraform.tfvars` with your settings.
 2. Run `terraform init && terraform apply`.

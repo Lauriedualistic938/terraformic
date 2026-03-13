@@ -7,6 +7,9 @@ Multi-cloud Terraform stacks for Kubernetes.
 - `AWS/` AWS EKS cluster (eu-central-1)
 - `GCP/` Google Cloud GKE cluster (EU region)
 
+## Backend state
+Each cloud folder has a `backend.tf` with `REPLACE_ME_*` placeholders. Update those values before running `terraform init`.
+
 ## Hetzner
 Quickstart:
 ```bash

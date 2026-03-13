@@ -6,6 +6,9 @@ Terraform setup for a GKE cluster in EU with 3 worker nodes, one per zone, and s
 - Terraform >= 1.5
 - GCP project + credentials (ADC or service account JSON)
 
+## Backend state
+Edit `GCP/backend.tf` and replace `REPLACE_ME_*` values before running `terraform init`.
+
 ## Usage
 1. Create a `terraform.tfvars` with your settings.
 2. Run `terraform init && terraform apply`.
@@ -27,4 +30,5 @@ project_name     = "k8s-gke"
 ## Outputs
 - GKE cluster name
 - API endpoint
+- Cluster CA data
 - Filestore instance name

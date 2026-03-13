@@ -8,6 +8,9 @@ Modular Terraform setup to create a 3x control-plane / 2x worker HA Kubernetes c
 - Hetzner Cloud API token
 - SSH keypair (public key uploaded via Terraform)
 
+## Backend state
+Edit `Hetzner/backend.tf` and replace `REPLACE_ME_*` values before running `terraform init`.
+
 ## Usage
 1. Create a `terraform.tfvars` with your settings.
 2. Run `terraform init && terraform apply`.
