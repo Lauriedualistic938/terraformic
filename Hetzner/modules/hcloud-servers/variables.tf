@@ -38,7 +38,31 @@ variable "ip_offset" {
   type = number
 }
 
-variable "user_data" {
+variable "user_data_template" {
+  type = string
+}
+
+variable "lb_ip" {
+  type = string
+}
+
+variable "k3s_token" {
+  type = string
+}
+
+variable "pod_cidr" {
+  type = string
+}
+
+variable "service_cidr" {
+  type = string
+}
+
+variable "longhorn_version" {
+  type = string
+}
+
+variable "k3s_version" {
   type = string
 }
 

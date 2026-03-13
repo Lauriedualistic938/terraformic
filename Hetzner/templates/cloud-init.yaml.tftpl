@@ -60,7 +60,7 @@ write_files:
         helm repo add longhorn https://charts.longhorn.io
         helm repo update
         kubectl create namespace longhorn-system || true
-        helm install longhorn longhorn/longhorn -n longhorn-system ${lh_arg}
+        helm install longhorn longhorn/longhorn -n longhorn-system $lh_arg
         kubectl -n longhorn-system rollout status deploy/longhorn-manager --timeout=10m
 
       else

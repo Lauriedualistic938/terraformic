@@ -62,7 +62,6 @@ resource "hcloud_firewall" "this" {
     port      = "30000-32767"
     source_ips = ["0.0.0.0/0", "::/0"]
   }
-
 }
 
 resource "hcloud_server" "this" {
@@ -73,7 +72,15 @@ resource "hcloud_server" "this" {
   location    = var.location
   ssh_keys    = [var.ssh_key_id]
 
-  user_data = var.user_data
+  user_data = templatefile(var.user_data_template, {
+    is_bootstrap      = count.index == 0 ? "true" : "false"
+    lb_ip            = var.lb_ip
+    k3s_token        = var.k3s_token
+    pod_cidr         = var.pod_cidr
+    service_cidr     = var.service_cidr
+    longhorn_version = var.longhorn_version
+    k3s_version      = var.k3s_version
+  })
 
   network {
     network_id = var.network_id

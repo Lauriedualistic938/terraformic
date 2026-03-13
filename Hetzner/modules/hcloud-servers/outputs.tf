@@ -7,7 +7,7 @@ output "ipv4" {
 }
 
 output "private_ipv4" {
-  value = hcloud_server.this[*].network[0].ip
+  value = [for s in hcloud_server.this : one(s.network).ip]
 }
 
 output "names" {

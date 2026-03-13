@@ -18,9 +18,9 @@ resource "hcloud_load_balancer_service" "kube_api" {
 }
 
 resource "hcloud_load_balancer_target" "control_plane" {
-  for_each         = toset(var.server_ids)
+  count            = length(var.server_ids)
   type             = "server"
   load_balancer_id = hcloud_load_balancer.this.id
-  server_id        = each.value
+  server_id        = var.server_ids[count.index]
   use_private_ip   = true
 }

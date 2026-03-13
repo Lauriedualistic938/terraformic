@@ -1,8 +1,9 @@
 locals {
-  subnet_cidr         = "10.0.0.0/24"
-  internal_cidr       = "10.0.0.0/16"
-  bastion_private_ip  = cidrhost(local.subnet_cidr, 5)
+  subnet_cidr           = "10.0.0.0/24"
+  internal_cidr         = "10.0.0.0/16"
+  bastion_private_ip    = cidrhost(local.subnet_cidr, 5)
   first_node_private_ip = cidrhost(local.subnet_cidr, 10)
+  kubectl_version       = "v1.30.0"
 }
 
 data "local_file" "ssh_public_key" {
@@ -46,8 +47,9 @@ resource "hcloud_server" "bastion" {
   ssh_keys    = [hcloud_ssh_key.this.id]
 
   user_data = templatefile("${path.module}/templates/bastion-cloud-init.yaml.tftpl", {
-    target_ip = local.first_node_private_ip
-    ssh_user  = "root"
+    target_ip       = local.first_node_private_ip
+    ssh_user        = "root"
+    kubectl_version = local.kubectl_version
   })
 
   network {
@@ -70,15 +72,13 @@ module "servers" {
   network_id        = module.network.network_id
   subnet_cidr       = local.subnet_cidr
   ip_offset         = 10
-  user_data         = templatefile("${path.module}/templates/cloud-init.yaml.tftpl", {
-    is_bootstrap      = "${count.index == 0 ? true : false}"
-    lb_ip            = "${module.lb.private_ip}"
-    k3s_token        = random_password.k3s_token.result
-    pod_cidr         = var.pod_cidr
-    service_cidr     = var.service_cidr
-    longhorn_version = var.longhorn_version
-    k3s_version      = var.k3s_version
-  })
+  user_data_template = "${path.module}/templates/cloud-init.yaml.tftpl"
+  lb_ip            = module.lb.private_ip
+  k3s_token        = random_password.k3s_token.result
+  pod_cidr         = var.pod_cidr
+  service_cidr     = var.service_cidr
+  longhorn_version = var.longhorn_version
+  k3s_version      = var.k3s_version
   enable_public_ssh = var.enable_public_ssh
   ssh_allowed_cidrs = ["${local.bastion_private_ip}/32"]
   internal_cidr     = local.internal_cidr

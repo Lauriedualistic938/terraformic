@@ -20,18 +20,8 @@ export AWS_SECRET_ACCESS_KEY="YOUR_HETZNER_SECRET_KEY"
 export AWS_DEFAULT_REGION="eu-central"
 ```
 
-Then init:
-```bash
-terraform init \
-  -backend-config="bucket=REPLACE_ME" \
-  -backend-config="key=hetzner/terraform.tfstate" \
-  -backend-config="region=REPLACE_ME" \
-  -backend-config="endpoint=REPLACE_ME"
-```
-
 ## Usage
 1. Create a `terraform.tfvars` with your settings.
-2. Run `terraform init` (see above) and `terraform apply`.
 
 Example `terraform.tfvars`:
 ```hcl
@@ -41,6 +31,18 @@ project_name        = "k3s-ha"
 location            = "fsn1"
 ssh_allowed_cidrs   = ["62.65.58.64/32"]
 ```
+2. Run `terraform init` (see below).
+
+Then init:
+```bash
+terraform init \
+  -backend-config="bucket=REPLACE_ME" \
+  -backend-config="key=hetzner/terraform.tfstate" \
+  -backend-config="region=REPLACE_ME" \
+  -backend-config="endpoint=REPLACE_ME"
+```
+
+2. Run `terraform plan` to see the plan and `terraform apply` to apply the plan.
 
 ## Access via bastion
 1. SSH into bastion:

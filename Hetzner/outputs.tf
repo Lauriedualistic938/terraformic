@@ -15,5 +15,5 @@ output "bastion_public_ip" {
 }
 
 output "bastion_private_ip" {
-  value = hcloud_server.bastion.network[0].ip
+  value = one(hcloud_server.bastion.network).ip
 }
