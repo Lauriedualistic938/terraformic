@@ -45,6 +45,7 @@ resource "hcloud_firewall" "this" {
     port      = "30000-32767"
     source_ips = ["0.0.0.0/0", "::/0"]
   }
+
 }
 
 resource "hcloud_server" "this" {

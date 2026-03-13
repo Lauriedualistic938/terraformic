@@ -51,17 +51,6 @@ variable "ssh_public_key_path" {
   type        = string
 }
 
-variable "ssh_private_key_path" {
-  description = "Path to private SSH key"
-  type        = string
-}
-
-variable "ssh_user" {
-  description = "SSH username"
-  type        = string
-  default     = "root"
-}
-
 variable "kubernetes_version_series" {
   description = "Kubernetes apt repo series (e.g., v1.30, v1.29)"
   type        = string
@@ -96,4 +85,16 @@ variable "enable_public_ssh" {
   description = "Allow SSH from the public internet"
   type        = bool
   default     = true
+}
+
+variable "vault_root_token" {
+  description = "Vault root token (used by in-cluster Vault dev server)"
+  type        = string
+  sensitive   = true
+}
+
+variable "vault_nodeport" {
+  description = "NodePort to expose Vault"
+  type        = number
+  default     = 30200
 }

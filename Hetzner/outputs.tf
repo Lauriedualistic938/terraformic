@@ -14,6 +14,6 @@ output "worker_public_ips" {
   value = module.workers.ipv4
 }
 
-output "kubeconfig_path" {
-  value = "${path.module}/kubeconfig"
+output "vault_endpoint" {
+  value = "https://${module.control_plane.ipv4[0]}:${var.vault_nodeport}"
 }
